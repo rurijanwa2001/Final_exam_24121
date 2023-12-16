@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Skill Boost Hub - New</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/fonts/simple-line-icons.min.css}">
+</head>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" th:href="@{/}">Skill Boost Hub</a><button data-bs-toggle="collapse"
+                                                                                                  class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navcol-1" th:if="${session.studId == null}">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/login}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student}">Signup</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol" th:if="${session.studId != null}">
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'STUDENT'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">My Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'INSTRUCTOR'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'ADMIN'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course}">Create Course</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Create an account</h2>
+                <p>Register today and start acquiring life changing knowledge ever in history</p>
+                <div th:if="${param.success}" class="alert alert-success">
+                    Accounted created successfully!
+                </div>
+                <div th:if="${param.fail}" class="alert alert-danger">
+                    Accounted not created! try again
+                </div>
+            </div>
+            <form role="form" method="post" th:action="@{/student/new}" th:object="${student}">
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="regNo">Fullname</label>
+                        <input class="form-control" type="text" id="regNo" name="regNo" th:field="*{fullName}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" type="email" id="email" name="password" th:field="*{email}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" type="password" id="password" name="password" th:field="*{password}" required>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit" id="register">Signup</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

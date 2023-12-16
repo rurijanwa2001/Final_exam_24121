@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="/components/header"></th:block>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <style>
+        /* Your provided CSS styles go here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('/static/img/background.jpg'); /* Replace 'path/to/your-background-image.jpg' with your image path */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .signin {
+            width: 400px;
+            height: 500px; /* Increased height of the form */
+            background: rgba(9, 8, 8, 0.6); /* White background with transparency */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Slight shadow */
+        }
+
+        .signin .content {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ... (rest of your provided CSS) ... */
+
+        .clean-block {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .clean-block.clean-form.dark {
+            background-color: rgba(9, 8, 8, 0.6); /* White background with transparency */
+            color: #ffffff; /* White text */
+        }
+
+        .clean-block h2.text-info {
+            font-size: 2em;
+            color: #ffffff; /* White text */
+            text-transform: uppercase;
+        }
+
+        .clean-block p {
+            color: #ffffff; /* White text */
+        }
+
+        .clean-block .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .clean-block .container .block-heading {
+            text-align: center;
+        }
+
+        .clean-block .container .block-heading .alert {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .clean-block .container .form label {
+            color: #ffffff; /* White text */
+        }
+
+        .clean-block .container .form .form-control {
+            width: 100%;
+            padding: 15px 10px; /* Increased padding for height */
+            border: 1px solid rgba(0, 0, 0, 0.81); /* Blue border */
+            border-radius: 4px;
+            outline: none;
+            color: #ffffff; /* White text */
+            background-color: transparent; /* Transparent background */
+        }
+
+        .clean-block .container .form .form-control:focus {
+            border-color: #ffb6c1; /* Baby pink border on focus */
+        }
+
+        .clean-block .container .form .btn-primary {
+            padding: 5px 20px; /* Adjust padding for button */
+            background-color: transparent; /* Transparent background */
+            color: #ffffff; /* White text */
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .clean-block .container .form .btn-primary:hover {
+            color: #fff; /* White text on hover */
+        }
+    </style>
+</head>
+<body>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Login</h2>
+                <p>Enter your login credentials</p>
+                <div th:if="${param.success}" class="alert alert-success">
+                    Account created! Login now
+                </div>
+                <div th:if="${param.fail}" class="alert alert-danger">
+                    Invalid email or password
+                </div>
+            </div>
+            <form role="form" method="post" th:action="@{/student/login/login_user}" th:object="${loginBean}">
+                <div class="mb-3">
+                    <label class="form-label" for="regNo">Email</label>
+                    <input class="form-control" type="text" id="regNo" name="regNo" th:field="*{email}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-control" type="password" id="password" name="password" th:field="*{password}">
+                </div>
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="login" />
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

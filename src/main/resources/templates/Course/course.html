@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Skill Boost Hub - New</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/fonts/simple-line-icons.min.css}">
+</head>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" th:href="@{/}">Skill Boost Hub</a><button data-bs-toggle="collapse"
+                                                                                                  class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navcol-1" th:if="${session.studId == null}">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/login}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student}">Signup</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol" th:if="${session.studId != null}">
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'STUDENT'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">My Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'INSTRUCTOR'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'ADMIN'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course}">Create Course</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Skill Boost Hub - Create Course</h2>
+                <div th:if="${param.success}" class="alert alert-success">
+                    <span>success!</span>
+                </div>
+                <div th:if="${param.fail}" class="alert alert-danger">
+                    <span>failed</span>
+                </div>
+            </div>
+            <form method="post" th:action="@{/course/new}" th:object="${course}">
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="courseName">Course name</label>
+                        <input class="form-control" type="text" id="courseName" name="courseName" th:field="*{courseName}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="description">Description</label>
+                        <input class="form-control" type="text" id="description" name="description" th:field="*{description}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="courseImgUrl">Course Image</label>
+                        <input class="form-control" type="text" id="courseImgUrl" name="courseName" th:field="*{courseImgUrl}">
+                    </div>
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="eskill">Skill Category</label>
+                        <select class="form-control" id="eskill" name="eskill" th:field="*{eskill}" required>
+                            <th:block th:each="skill :${skills}">
+                                <option th:value="${skill}">[[${skill}]]</option>
+                            </th:block>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="cost">Cost</label>
+                        <input class="form-control" type="text" id="cost" name="cost" th:field="*{cost}">
+                    </div>
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="instructor">Instructor</label>
+                        <select class="form-control" id="instructor" name="instructor" th:field="*{student}" required>
+                            <th:block th:each="instructor :${instructorList}">
+                                <option th:value="${instructor.studentId}">[[${instructor.fullName}]]</option>
+                            </th:block>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="mb-3 col-xl">
+                        <label class="form-label" for="content">Content</label>
+                        <textarea class="form-control" id="content" rows="3" th:field="*{content}"></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <button class="btn btn-primary" type="submit" id="createCourset">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

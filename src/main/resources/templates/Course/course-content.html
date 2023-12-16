@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Skill Boost Hub - Content</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/fonts/simple-line-icons.min.css}">
+</head>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" th:href="@{/}">Skill Boost Hub</a><button data-bs-toggle="collapse"
+                                                                                                  class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navcol-1" th:if="${session.studId == null}">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/login}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student}">Signup</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol" th:if="${session.studId != null}">
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'STUDENT'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course_enrolment/my-enrol}">My Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'INSTRUCTOR'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'ADMIN'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course}">Create Course</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+<main class="page landing-page">
+    <section class="py-3 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Course Content</h1>
+            </div>
+        </div>
+    </section>
+    <div th:if="${param.success}" class="alert alert-success">
+        Request succeed
+    </div>
+    <div th:if="${param.fail}" class="alert alert-danger">
+        Request failed
+    </div>
+    <section class="container">
+        <div class="card shadow-sm">
+            <img th:src="${course.courseImgUrl}" class="bd-placeholder-img card-img-top"></img>
+            <div class="card-body">
+                <h3 th:text="${course.courseName}"></h3>
+                <p class="card-text" th:text="${course.description}"></p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-body-secondary" th:text="${course.eskill}"></small>
+                </div>
+                <div th:if="${session.studId != null}">
+                    <div class="row">
+                        <a class="text-info" th:href="@{/course_enrolment/{studId}/enrol/{courseId}(studId=${session.studId}, courseId=${course.courseId})}">Enrol</a>
+                    </div>
+                </div>
+                <div class="row gap-3" th:if="${session.role == 'ADMIN'}">
+                    <a class="text-warning col-xl" th:href="@{/course/{courseId}/edit(courseId=${course.courseId})}">Edit</a>
+                    <a class="text-danger col-xl" th:href="@{/course/{courseId}/delete(courseId=${course.courseId})}">Remove</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <p th:text="${course.content}"></p>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+<script>
+    function confirmEdit() {
+        return confirm("Are you sure you want to edit this Course?");
+    }
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this Course?");
+    }
+</script>
+</html>

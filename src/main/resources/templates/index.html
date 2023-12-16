@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Skill Boost Hub - Home</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/fonts/simple-line-icons.min.css}">
+    <style>
+        /* Additional CSS styles for background and other elements */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Background styles */
+        .custom-background {
+            background-image: url('/static/img/pexels-antoni-shkraba-4706135.jpg'); /* Replace 'path/to/your/image.jpg' with your image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* Change text color for better visibility */
+            text-align: center;
+        }
+
+        /* Navbar styles */
+        .clean-navbar {
+            /* Your existing navbar styles */
+            /* ... */
+        }
+
+        /* Cards styles */
+        .card {
+            /* Your existing card styles */
+            /* ... */
+        }
+
+        /* ... Additional styles for other elements ... */
+    </style>
+
+</head>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" th:href="@{/}">Skill Boost Hub</a><button data-bs-toggle="collapse"
+                                                                                                  class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navcol-1" th:if="${session.studId == null}">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/login}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student}">Signup</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol" th:if="${session.studId != null}">
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'STUDENT'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course_enrolment/my-enrol}">My Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'INSTRUCTOR'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto" th:if="${session.role == 'ADMIN'}">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course}">Create Course</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/course/all-course}">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Enrolments</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/student/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+<main class="page landing-page">
+    <div th:if="${param.loginsuccess}" class="alert alert-success">
+        Logged in successfully!
+    </div>
+    <div th:if="${param.fail}" class="alert alert-danger">
+        There's problem
+    </div>
+    <section class="clean-block clean-hero custom-background">
+        <div class="text">
+            <h2>Learning in class is hard,<br/>Not hard at <i class="text-warning">SkillBoostHub</i></h2>
+            <p>Best platform receiving all kind of students to help them learn their favorite course on the go.</p>
+            <button class="btn btn-outline-light btn-lg" type="button">Enroll Now</button>
+        </div>
+    </section>
+    <section class="container">
+        <div class="row mt-2 mb-5 gap-4">
+            <div class="col-xl" th:each="course :${courseList}">
+                <div class="card shadow-sm">
+                    <img th:src="${''}" class="bd-placeholder-img card-img-top"  alt="image"/>
+                    <div class="card-body">
+                        <h3 th:text="${course.courseName}"></h3>
+                        <p class="card-text" th:text="${course.description}"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-body-secondary" th:text="${course.eskill}"></small>
+                        </div>
+                        <a th:href="@{/course/{courseId}/content(courseId=${course.courseId})}" class="card-link">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
