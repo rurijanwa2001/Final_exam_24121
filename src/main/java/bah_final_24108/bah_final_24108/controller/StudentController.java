@@ -43,7 +43,6 @@ public class StudentController {
         try {
             student.setStudentRole(Erole.STUDENT);
             studentService.createStudent(student);
-            // Extract the full name from the HeavenCoffeeUser object
             String fullNames = student.getFullName();
 
             // Send the email using the EmailService
@@ -57,17 +56,14 @@ public class StudentController {
 
     private void sendEmail(String toEmail, String fullName) {
         try {
-            String subject = "HeavenCoffee Registration Confirmation";
+            String subject = "Registration Confirmation";
             String body = String.format("<html><body>" +
                     "<p>Dear %s,</p>" +
-                    "<p>Welcome to Heaven Coffee Restaurant! Thank you for registering. " +
-                    "Your role is crucial in managing and overseeing our operations.</p>" +
-                    "<p>As a member, you have access to advanced functionalities and responsibilities. " +
+                    "<p>Welcome to  SkillBoostHub! Thank you for registering. " +
+                    "Learning has zero limits, Join US Now.</p>" +
                     "If you have any questions or need assistance, please don't hesitate to contact our management team.</p>" +
-                    "<p>We appreciate your commitment to excellence and look forward to working together to make Heaven Coffee a great place for both our customers and our team.</p>" +
                     "<p>Best regards,<br/>" +
                     "Management Team<br/>" +
-                    "Heaven Coffee Restaurant</p>" +
                     "</body></html>", fullName);
             // Use the EmailService to send the email
             emailService.sendEmail(toEmail, subject, body);
