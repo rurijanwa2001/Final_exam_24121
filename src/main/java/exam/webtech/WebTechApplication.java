@@ -1,13 +1,13 @@
-package bah_final_24108.bah_final_24108;
+package exam.webtech;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BahFinal24108Application {
+public class WebTechApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BahFinal24108Application.class, args);
+		SpringApplication.run(WebTechApplication.class, args);
 	}
 
 }

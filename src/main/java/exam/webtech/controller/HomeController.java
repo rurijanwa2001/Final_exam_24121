@@ -1,6 +1,6 @@
-package bah_final_24108.bah_final_24108.controller;
-import bah_final_24108.bah_final_24108.model.Course;
-import bah_final_24108.bah_final_24108.service.CourseService;
+package exam.webtech.controller;
+import exam.webtech.model.Course;
+import exam.webtech.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

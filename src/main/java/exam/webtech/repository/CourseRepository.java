@@ -1,6 +1,6 @@
-package bah_final_24108.bah_final_24108.repository;
+package exam.webtech.repository;
 
-import bah_final_24108.bah_final_24108.model.Course;
+import exam.webtech.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -10,8 +10,8 @@
           href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
     <link rel="stylesheet" th:href="@{/fonts/simple-line-icons.min.css}">
 </head>
-<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><a class="navbar-brand logo" th:href="@{/}">Skill Boost Hub</a><button data-bs-toggle="collapse"
+<nav class="navbar-dark  navbar-expand-lg fixed-top bg-black clean-navbar">
+    <div class="container"><a class="navbar-brand logo" th:href="@{/}">E-learning platform</a><button data-bs-toggle="collapse"
                                                                                                   class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
                     navigation</span><span class="navbar-toggler-icon"></span></button>
 
@@ -63,7 +63,7 @@
     </div>
     <section class="container">
         <div class="row mt-2 mb-5 gap-4">
-            <div class="col-xl" th:each="course :${courseList}">
+            <div class="col-xl-3" th:each="course :${courseList}">
                 <div class="card shadow-sm">
                     <img th:src="${course.courseImgUrl}" class="bd-placeholder-img card-img-top" />
                     <div class="card-body">

@@ -1,7 +1,7 @@
-package bah_final_24108.bah_final_24108.service;
+package exam.webtech.service;
 
-import bah_final_24108.bah_final_24108.model.Course;
-import bah_final_24108.bah_final_24108.repository.CourseRepository;
+import exam.webtech.model.Course;
+import exam.webtech.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

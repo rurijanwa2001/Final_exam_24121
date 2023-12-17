@@ -1,10 +1,10 @@
-package bah_final_24108.bah_final_24108.controller;
+package exam.webtech.controller;
 
-import bah_final_24108.bah_final_24108.model.Enums.Erole;
-import bah_final_24108.bah_final_24108.model.LoginBean;
-import bah_final_24108.bah_final_24108.model.Student;
-import bah_final_24108.bah_final_24108.service.EmailService;
-import bah_final_24108.bah_final_24108.service.StudentService;
+import exam.webtech.model.Enums.Erole;
+import exam.webtech.model.LoginBean;
+import exam.webtech.model.Student;
+import exam.webtech.service.EmailService;
+import exam.webtech.service.StudentService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

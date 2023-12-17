@@ -1,6 +1,6 @@
-package bah_final_24108.bah_final_24108.model;
+package exam.webtech.model;
 
-import bah_final_24108.bah_final_24108.model.Enums.Estatus;
+import exam.webtech.model.Enums.Estatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

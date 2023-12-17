@@ -8,11 +8,11 @@
 		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>bah_final_24108</groupId>
-	<artifactId>bah_final_24108</artifactId>
+	<groupId>exam</groupId>
+	<artifactId>exam</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bah_final_24108</name>
-	<description>skill boost hub</description>
+	<name>exam</name>
+	<description>Elearning Platform</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

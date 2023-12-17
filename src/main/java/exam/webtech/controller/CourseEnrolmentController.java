@@ -1,12 +1,12 @@
-package bah_final_24108.bah_final_24108.controller;
+package exam.webtech.controller;
 
-import bah_final_24108.bah_final_24108.model.Course;
-import bah_final_24108.bah_final_24108.model.CourseEnrolment;
-import bah_final_24108.bah_final_24108.model.Enums.Estatus;
-import bah_final_24108.bah_final_24108.model.Student;
-import bah_final_24108.bah_final_24108.service.CourseEnrolmentService;
-import bah_final_24108.bah_final_24108.service.CourseService;
-import bah_final_24108.bah_final_24108.service.StudentService;
+import exam.webtech.model.Course;
+import exam.webtech.model.CourseEnrolment;
+import exam.webtech.model.Enums.Estatus;
+import exam.webtech.model.Student;
+import exam.webtech.service.CourseEnrolmentService;
+import exam.webtech.service.CourseService;
+import exam.webtech.service.StudentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

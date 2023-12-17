@@ -1,4 +1,4 @@
-package bah_final_24108.bah_final_24108.service;
+package exam.webtech.service;
 
 import jakarta.mail.MessagingException;
 

@@ -1,7 +1,7 @@
-package bah_final_24108.bah_final_24108.repository;
+package exam.webtech.repository;
 
-import bah_final_24108.bah_final_24108.model.Enums.Erole;
-import bah_final_24108.bah_final_24108.model.Student;
+import exam.webtech.model.Enums.Erole;
+import exam.webtech.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package bah_final_24108.bah_final_24108.service;
+package exam.webtech.service;
 
-import bah_final_24108.bah_final_24108.model.Enums.Erole;
-import bah_final_24108.bah_final_24108.model.Student;
-import bah_final_24108.bah_final_24108.repository.StudentRepository;
+import exam.webtech.model.Enums.Erole;
+import exam.webtech.model.Student;
+import exam.webtech.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
